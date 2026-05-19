@@ -1,0 +1,44 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root { color-scheme: dark; }
+
+html, body { height: 100%; }
+body {
+  @apply bg-bg text-white antialiased;
+  background-image:
+    radial-gradient(1200px 600px at 80% -10%, rgba(167,139,250,.18), transparent 60%),
+    radial-gradient(900px 500px at -10% 110%, rgba(34,211,238,.15), transparent 60%),
+    linear-gradient(180deg, #06061a 0%, #07071e 100%);
+}
+
+@layer components {
+  .glass {
+    @apply bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl shadow-soft;
+  }
+  .glow-btn {
+    @apply relative inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl font-medium
+           text-white bg-gradient-to-r from-fuchsia-500 via-violet-500 to-cyan-400 bg-[length:200%_200%]
+           animate-gradient-x shadow-glow hover:brightness-110 transition;
+  }
+  .ghost-btn {
+    @apply inline-flex items-center gap-2 px-4 py-2 rounded-xl border border-white/10
+           bg-white/5 hover:bg-white/10 transition text-sm;
+  }
+  .input {
+    @apply w-full rounded-xl bg-white/5 border border-white/10 px-4 py-2.5
+           outline-none focus:border-violet-400/60 focus:ring-2 focus:ring-violet-400/20 placeholder:text-white/30;
+  }
+  .label { @apply text-xs uppercase tracking-wider text-white/60 mb-1.5 block; }
+  .chip { @apply px-2 py-0.5 rounded-full text-xs border border-white/10 bg-white/5; }
+}
+
+/* Skeleton */
+.skeleton { @apply relative overflow-hidden bg-white/5 rounded-xl; }
+.skeleton::after {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,.07), transparent);
+  transform: translateX(-100%); animation: shimmer 1.4s infinite;
+}
+@keyframes shimmer { 100% { transform: translateX(100%); } }
